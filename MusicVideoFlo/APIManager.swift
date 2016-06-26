@@ -36,7 +36,7 @@ class APIManager {
                      Convert the NSDATA into a JSON Object and cast it to a Dictionnary */
                     
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                        as? [String: AnyObject] {
+                        as? JSONDictionary {
                         
                         print(json)
                         
