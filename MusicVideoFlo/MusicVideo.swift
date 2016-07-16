@@ -10,6 +10,7 @@ import Foundation
 
 class Videos {
     
+    var vRank = 0
     //Data Encapsulation
     
     private var _vName:String
@@ -23,6 +24,9 @@ class Videos {
     private var _vLinkToiTunes:String
     private var _vReleaseDte:String
     
+    
+    //This variable gets created from the UI
+    var vImageData:NSData?
     
     //Make a getter
     
@@ -186,5 +190,6 @@ class Videos {
         {
             _vReleaseDte = ""
         }
+        
     }
 }
