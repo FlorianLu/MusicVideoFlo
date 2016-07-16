@@ -9,8 +9,9 @@
         <!--Music VideoTVC-->
         <scene sceneID="ilf-FF-uO9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvD-5i-oNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="dq3-RP-qbN" customClass="MusicVideoTVC" customModule="MusicVideoFlo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TuS-yO-bZd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="132" sectionHeaderHeight="28" sectionFooterHeight="28" id="TuS-yO-bZd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +73,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="BGu-Uw-Qsq"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uvD-5i-oNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1354" y="377"/>
         </scene>
