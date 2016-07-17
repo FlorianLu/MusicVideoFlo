@@ -31,10 +31,11 @@ class MusicVideoTableViewCell: UITableViewCell {
         //musicImage.image = UIImage(named: "imageNotAvailable")
         
         if video!.vImageData != nil {
-            print("Get data fro array...")
+            print("Get data from array...")
             musicImage.image = UIImage(data: video!.vImageData!)
         } else {
              GetImageVideo(video!, imageView: musicImage)
+             print("Get images in background thread")
         }
         
     }
