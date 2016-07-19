@@ -42,7 +42,7 @@ class Videos {
         return _vVideoUrl
     }
     
-    var vRight:String {
+    var vRights:String {
         return _vRights
     }
     
@@ -162,7 +162,7 @@ class Videos {
         // The Genre
         if let genre = data["category"] as? JSONDictionary,
             vGenreAttributes = genre["attributes"] as? JSONDictionary,
-            vGenre = vGenreAttributes["terms"] as? String {
+            vGenre = vGenreAttributes["term"] as? String {
             self._vGenre = vGenre
         }
         else
