@@ -32,8 +32,23 @@ class SettingTVC: UITableViewController {
         
         tableView.alwaysBounceVertical = false
         
+        title = "Settings"
+        
+        touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
         
     }
+    
+    
+    @IBAction func toucheIdSec(sender: UISwitch) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if touchID.on {
+            defaults.setBool(touchID.on, forKey: "SecSetting")
+        } else {
+            defaults.setBool(false, forKey: "SecSetting")
+        }
+    }
+    
     
     func preferredFontChange() {
         
