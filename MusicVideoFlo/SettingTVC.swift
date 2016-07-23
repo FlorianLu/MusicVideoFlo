@@ -28,7 +28,7 @@ class SettingTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.preferredFontChange), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingTVC.preferredFontChange), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         tableView.alwaysBounceVertical = false
         
@@ -36,8 +36,18 @@ class SettingTVC: UITableViewController {
         
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
         
+        if (NSUserDefaults.standardUserDefaults().objectForKey("APICNT") != nil) {
+            let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICNT") as! Int
+            APICnt.text = ("\(theValue)")
+            sliderCnt.value = Float(theValue)
+        }
     }
     
+    @IBAction func valueChanged(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(Int(sliderCnt.value), forKey: "APICNT")
+        APICnt.text = ("\(Int(sliderCnt.value))")
+    }
     
     @IBAction func toucheIdSec(sender: UISwitch) {
         
