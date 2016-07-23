@@ -481,6 +481,9 @@
                     <toolbarItems>
                         <barButtonItem systemItem="play" id="aSd-aZ-85i">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="playVideo:" destination="u2w-fE-QPi" id="etF-Ed-3pc"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="brb-SP-BKT"/>
                         <barButtonItem systemItem="action" id="uGe-9p-5QH">
