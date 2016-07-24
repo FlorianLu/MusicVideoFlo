@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingTVC: UITableViewController {
+class SettingTVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var aboutDisplay: UILabel!
     
@@ -76,6 +77,58 @@ class SettingTVC: UITableViewController {
         numberMusicVideo.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         dragSlider.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
         APICnt.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 1 {
+            let mailComposeViewController = configureMail()
+            
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            } else {
+                // No email account Setup on Phone
+                mailAlert()
+            }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    func configureMail() -> MFMailComposeViewController {
+        
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients(["florian.ludot@gmail.com"])
+        mailComposeVC.setSubject("Music Video App FeedBack")
+        mailComposeVC.setMessageBody("Hi Flo,\n\nI would like ro share the following feedback...\n", isHTML: false)
+        return mailComposeVC
+    }
+    
+    func mailAlert() {
+        let alertController: UIAlertController = UIAlertController(title: "Alert", message: "No e-Mail setup for Phone", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+            // do something if you want
+         
+        }
+        
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue :
+            print("Mail canceled")
+        case MFMailComposeResultSaved.rawValue :
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue :
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue :
+            print("Mail failed")
+        default:
+            print("Unknow Issue")
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Is called just as the object is about to be dellocated
