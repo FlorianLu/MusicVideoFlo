@@ -253,10 +253,10 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        searchController.searchBar.text!.lowercaseString
-//        filterSearch(searchController.searchBar.text!)
-//    }
+   func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchController.searchBar.text!.lowercaseString
+       filterSearch(searchController.searchBar.text!)
+    }
     
     func filterSearch(searchText: String) {
         filterSearch = videos.filter { videos in
