@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MusicVideoTVC: UITableViewController {
+class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     
     var videos = [Videos]()
     
@@ -57,7 +57,7 @@ class MusicVideoTVC: UITableViewController {
         
         // Setup the SearchController
         
-        //resultSearchController.searchResultsUpdater = self
+        resultSearchController.searchResultsUpdater = self
         
         definesPresentationContext = true
         
@@ -117,14 +117,6 @@ class MusicVideoTVC: UITableViewController {
         }
     }
     
-    
-    
-    @IBAction func refresh(sender: UIRefreshControl) {
-        
-        refreshControl?.endRefreshing()
-        runAPI()
-    }
-    
     func getAPICount(){
         if (NSUserDefaults.standardUserDefaults().objectForKey("APICNT") != nil) {
             let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICNT") as! Int
@@ -136,6 +128,20 @@ class MusicVideoTVC: UITableViewController {
         let refreshDte = formatter.stringFromDate(NSDate())
         
         refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDte)")
+    }
+
+    
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        
+        refreshControl?.endRefreshing()
+        
+        if resultSearchController.active {
+            refreshControl?.attributedTitle = NSAttributedString(string: "No refresh allowed")
+        } else {
+            runAPI()
+        }
+        
     }
     
     
@@ -246,5 +252,20 @@ class MusicVideoTVC: UITableViewController {
             }
         }
     }
+    
+//    func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        searchController.searchBar.text!.lowercaseString
+//        filterSearch(searchController.searchBar.text!)
+//    }
+    
+    func filterSearch(searchText: String) {
+        filterSearch = videos.filter { videos in
+            return videos.vArtist.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    }
+        
+    
     
 }
